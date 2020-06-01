@@ -6,7 +6,7 @@ class PinsController < ApplicationController
   end
 
   def new
-    @pin = Pin.new
+    @pin = Pin.newi
   end
 
   def create
@@ -21,6 +21,6 @@ class PinsController < ApplicationController
 
   private
     def pin_params
-      params.require(:pin).permit(:title, :image_url)
+      params.permit(:title, :image_url)
     end
 end
