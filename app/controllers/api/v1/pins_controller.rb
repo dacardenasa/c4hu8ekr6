@@ -10,7 +10,7 @@ class Api::V1::PinsController < ApplicationController
     if pin.save
       render json: pin, status: 201
     else
-      render json: { errors: pin.errors }, status: 422
+      render json: { errors: pin.errors }, status: 401
     end
   end
 
