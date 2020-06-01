@@ -2,7 +2,7 @@ class Api::V1::PinsController < ApplicationController
   before_action :basic_auth
 
   def index
-    render json: Pin.all.order('created_at DESC')
+    render json: Pin.all.order('created_at DESC'), status: 200
   end
 
   def create
