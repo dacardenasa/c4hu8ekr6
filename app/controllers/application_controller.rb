@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
       if user.api_token == token
         sign_in user
       else
-        render json: { status: 401 }
+        head 401
       end
     end
   end
