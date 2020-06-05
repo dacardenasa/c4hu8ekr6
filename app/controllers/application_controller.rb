@@ -4,14 +4,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def basic_auth
-   authenticate_or_request_with_http_basic do |username, token|
-     user = User.find_by_email(username)
-     if user.api_token == token
-       sign_in user
-     else
-       head 401
-     end
-   end
+    authenticate_or_request_with_http_basic do |username, token|
+      user = User.find_by_email(username)
+      if user.api_token == token
+        sign_in user
+      else
+        render json: { status: 401 }
+      end
+    end
   end
-
 end
