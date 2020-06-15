@@ -18,4 +18,16 @@ class Api::V1::PinsController < ApplicationController
     def pin_params
       params.require(:pin).permit(:title, :image_url)
     end
+  
+  protected
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, token|
+      user = User.find_by_email(username)
+      if user.api_token == token
+        sign_in user
+      else
+        head 401
+      end
+    end
+  end
 end
