@@ -25,8 +25,6 @@ class Api::V1::PinsController < ApplicationController
       user = User.find_by_email(username)
       if user.api_token == token
         sign_in user
-      else
-        head 401
       end
     end
   end
