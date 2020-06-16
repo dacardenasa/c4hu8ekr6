@@ -6,13 +6,18 @@ class ApplicationController < ActionController::Base
   def basic_auth
     email = request.headers["X-User-Email"]
     token = request.headers["X-Api-Token"]
-    user = User.find_by_email(email)
 
-    if user.api_token == token
-      sign_in user
+    if User.find_by_email(email)
+      user = User.find_by_email(email)
+      if user.api_token == token
+        sign_in user
+      else
+        head 401
+      end
     else
       head 401
     end
+
     # Authenticate with http_request_basic
     # authenticate_or_request_with_http_basic do |username, token|
     #   user = User.find_by_email(username)
