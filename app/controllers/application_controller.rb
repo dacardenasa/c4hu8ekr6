@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
     if User.find_by_email(email)
       user = User.find_by_email(email)
       if user.api_token == token
-        sign_in user
       else
         head 401
       end
