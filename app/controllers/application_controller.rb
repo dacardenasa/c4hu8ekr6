@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
 
     if User.exists?(email: email)
       user = User.find_by_email(email)
-      if user.api_token == token
-      else
+      if user.api_token != token
         head 401
       end
     else
