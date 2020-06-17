@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     email = request.headers["X-User-Email"]
     token = request.headers["X-Api-Token"]
 
-    if User.find_by_email(email)
+    if User.exists?(email: email)
       user = User.find_by_email(email)
       if user.api_token == token
       else
